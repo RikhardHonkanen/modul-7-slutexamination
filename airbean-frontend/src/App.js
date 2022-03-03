@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import { useDispatch } from 'react-redux';
+
+import ViewCart from './components/ViewCart'
+import {increment, decrement} from './actions/cartActions'
 
 function App() {
+  const dispatch = useDispatch();
+
+  function increase() {
+    dispatch(increment(1));
+  }
+
+  function decrease() {
+    dispatch(decrement(1));
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={increase}>Increase</button>
+      <button onClick={decrease}>Decrease</button>
+      
+      <ViewCart />
     </div>
   );
 }
