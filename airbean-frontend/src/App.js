@@ -1,26 +1,20 @@
 import './App.css';
-import { useDispatch } from 'react-redux';
+import {Routes, Route} from 'react-router-dom';
+import Landing from './views/Landing'
+import Menu from './views/Menu'
+import Cart from './views/Cart'
+import Status from './views/Status'
 
-import ViewCart from './components/ViewCart'
-import {increment, decrement} from './actions/cartActions'
 
 function App() {
-  const dispatch = useDispatch();
-
-  function increase() {
-    dispatch(increment(1));
-  }
-
-  function decrease() {
-    dispatch(decrement(1));
-  }
-
   return (
     <div className="App">
-      <button onClick={increase}>Increase</button>
-      <button onClick={decrease}>Decrease</button>
-      
-      <ViewCart />
+      <Routes>
+        <Route path="/" element={<Landing />} exact />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/status" element={<Status />} />
+      </Routes>
     </div>
   );
 }
