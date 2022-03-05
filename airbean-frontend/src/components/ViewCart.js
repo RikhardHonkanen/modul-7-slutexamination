@@ -5,7 +5,7 @@ function ViewCart() {
     const counter = useSelector((state) => {return state.counter});
 
   return (
-    <div className="Cart">
+    <div className="cart-component">
         <h1>Count: {counter}</h1>      
     </div>
   );

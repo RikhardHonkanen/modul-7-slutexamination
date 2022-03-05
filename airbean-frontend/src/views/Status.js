@@ -2,7 +2,9 @@ import '../App.css';
 
 function Status() {
     return (
-        <h2>Order confirmation</h2>
+        <div className='status'>
+            <h2>Order confirmation</h2>
+        </div>
     )
 }
 

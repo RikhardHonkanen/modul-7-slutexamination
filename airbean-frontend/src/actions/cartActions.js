@@ -1,13 +1,20 @@
-export const increment = (count) => {
+export const initialize = (apiMenu) => {
     return {
-        type: 'INCREMENT',
-        payload: count
+        type: 'INITIALIZE',
+        payload: apiMenu
     }
 }
 
-export const decrement = (count) => {
-    return {
-        type: 'DECREMENT',
-        payload: count
-    }
-}
+// export const increment = (count) => {
+//     return {
+//         type: 'INCREMENT',
+//         payload: count
+//     }
+// }
+
+// export const decrement = (count) => {
+//     return {
+//         type: 'DECREMENT',
+//         payload: count
+//     }
+// }

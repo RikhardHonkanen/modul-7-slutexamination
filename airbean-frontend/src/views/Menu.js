@@ -3,7 +3,9 @@ import ViewCart from '../components/ViewCart'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {increment, decrement} from '../actions/cartActions'
+// import {increment, decrement, initialize} from '../actions/cartActions';
+import {initialize} from '../actions/cartActions';
+import {useSelector} from 'react-redux';
 
 function Menu() {
     useEffect(() => {
@@ -12,28 +14,34 @@ function Menu() {
 
     const dispatch = useDispatch();
 
-    function increase() {
-        dispatch(increment(1));
-    }
-
-    function decrease() {
-        dispatch(decrement(1));
-    }
-
     async function getMenu() {
         let url = "http://localhost:5000/api/beans"
-        const menu = await fetch (url, {
+        const response = await fetch (url, {
             method:"GET"
         });
-        console.log(menu);
+        const apiMenu = await response.json();
+        dispatch(initialize(apiMenu));
+    }    
+
+    function initializeStore() {
+
     }
 
+    // function increase() {
+    //     dispatch(increment(1));
+    // }
+
+    // function decrease() {
+    //     dispatch(decrement(1));
+    // }
+    
+
     return (
-        <div className='Menu'>
+        <div className='menu'>
             <ViewCart />
             <h2>List of menu items</h2>
-            <button onClick={increase}>Increase</button>
-            <button onClick={decrease}>Decrease</button>
+            {/* <button onClick={increase}>Increase</button>
+            <button onClick={decrease}>Decrease</button> */}
 
             <Link to="/cart">To Cart</Link>
         </div>
