@@ -1,10 +1,10 @@
 import '../App.css';
 import ViewCart from '../components/ViewCart'
+import MenuItem from '../components/MenuItem'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-// import {increment, decrement, initialize} from '../actions/cartActions';
-import {initialize} from '../actions/cartActions';
+import {increment, decrement, initialize} from '../actions/cartActions';
 import {useSelector} from 'react-redux';
 
 function Menu() {
@@ -12,7 +12,7 @@ function Menu() {
         getMenu();
     }, []);
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();    
 
     async function getMenu() {
         let url = "http://localhost:5000/api/beans"
@@ -21,27 +21,33 @@ function Menu() {
         });
         const apiMenu = await response.json();
         dispatch(initialize(apiMenu));
-    }    
-
-    function initializeStore() {
-
     }
 
-    // function increase() {
-    //     dispatch(increment(1));
-    // }
+    function increase() {
+        dispatch(increment(1));
+    }
 
-    // function decrease() {
-    //     dispatch(decrement(1));
-    // }
-    
+    function decrease() {
+        dispatch(decrement(1));
+    }    
 
+    const menu = useSelector((state) => {return state.menuItems});
+    console.log(menu);
     return (
         <div className='menu'>
             <ViewCart />
-            <h2>List of menu items</h2>
-            {/* <button onClick={increase}>Increase</button>
-            <button onClick={decrease}>Decrease</button> */}
+            {menu.menu?.map((menuItem) => {
+                return (
+                    <MenuItem key={menuItem.id}
+                        id={menuItem.id}
+                        title={menuItem.title}
+                        desc={menuItem.desc}
+                        price={menuItem.price}
+                    />
+                )
+            })}
+            <button onClick={increase}>Increase</button>
+            <button onClick={decrease}>Decrease</button>
 
             <Link to="/cart">To Cart</Link>
         </div>
