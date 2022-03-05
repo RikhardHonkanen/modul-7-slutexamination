@@ -4,7 +4,7 @@ import MenuItem from '../components/MenuItem'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {increment, decrement, initialize} from '../actions/cartActions';
+import {initialize} from '../actions/cartActions';
 import {useSelector} from 'react-redux';
 
 function Menu() {
@@ -23,14 +23,6 @@ function Menu() {
         dispatch(initialize(apiMenu));
     }
 
-    function increase() {
-        dispatch(increment(1));
-    }
-
-    function decrease() {
-        dispatch(decrement(1));
-    }    
-
     const menu = useSelector((state) => {return state.menuItems});
     console.log(menu);
     return (
@@ -46,9 +38,6 @@ function Menu() {
                     />
                 )
             })}
-            <button onClick={increase}>Increase</button>
-            <button onClick={decrease}>Decrease</button>
-
             <Link to="/cart">To Cart</Link>
         </div>
     )

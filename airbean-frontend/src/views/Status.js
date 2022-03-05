@@ -6,18 +6,21 @@ function Status() {
         getStatus();
     }, []);
 
+    let orderNr = "";
     async function getStatus() {
         let url = "http://localhost:5000/api/beans"
         const response = await fetch (url, {
             method:"POST"
         });
         const confirmation = await response.json();
-        console.log(confirmation);
+        orderNr = confirmation.orderNr;
+        console.log(orderNr);
     }
 
-    return (
+    // ???    
+    return (        
         <div className='status'>
-            <h2>Order confirmation</h2>
+            <h2>Ordernummer #{orderNr}</h2>
         </div>
     )
 }
