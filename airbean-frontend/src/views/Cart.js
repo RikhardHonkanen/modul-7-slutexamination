@@ -11,9 +11,45 @@ function Cart() {
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
+
+    // This function can probably be improved a lot
+    function findDiscounts() {        
+        const coffeeIndex = menu.menu.findIndex(i => i.title === "Bryggkaffe");
+        const coffeeId = menu.menu[coffeeIndex].id;
+        const pastryIndex = menu.menu.findIndex(i => i.title === "Gustav Adolfsbakelse");
+        const pastryId = menu.menu[pastryIndex].id;
+
+        if (currentCart.includes(coffeeId) && currentCart.includes(pastryId)) {
+            let coffeeAmount = 0;
+            let pastryAmount = 0;
+                        
+            function countCoffee(item) {
+                if (item === coffeeId) {
+                    coffeeAmount += 1;
+                }
+            }
+            function countPastry(item) {
+                if (item === pastryId) {
+                    pastryAmount += 1;
+                }
+            }
+            currentCart.forEach(countCoffee);
+            currentCart.forEach(countPastry);
+
+            if (coffeeAmount > pastryAmount) {
+                discount = pastryAmount * 49;
+            }
+            else {
+                discount = coffeeAmount * 49;
+            }
+
+            return discount;            
+        }        
+    }
     
     const uniqueCart = currentCart.filter(onlyUnique);
     let totalPrice = 0;
+    let discount = 0;
 
     return (
         <div className='cart'>
@@ -28,6 +64,7 @@ function Cart() {
                 }
                 currentCart.forEach(countItems);
                 totalPrice += itemAmount * menu.menu[index].price;
+                discount = findDiscounts();
                 
                 return (
                     <CartItem key={menu.menu[index].id}
@@ -38,8 +75,7 @@ function Cart() {
                     />
                 )
             })}
-
-            <h1>Total {totalPrice} kr</h1>
+            <h1>Total {totalPrice - discount} kr</h1>
             <Link to="/status">Take my money!</Link>
         </div>
     )

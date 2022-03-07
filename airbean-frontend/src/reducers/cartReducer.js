@@ -1,7 +1,6 @@
 const initialState = {
     menuItems: [],
-    cartItems: [],
-    counter: 0
+    cartItems: []
 }
 
 const cartReducer = (state = initialState, action) => {
