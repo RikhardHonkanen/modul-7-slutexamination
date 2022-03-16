@@ -1,28 +1,28 @@
 import '../App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function Status() {
-    let orderNr = "";
+    const [confirmation, setConfirmation] = useState({});
 
     useEffect(() => {
         async function getStatus() {
             let url = "http://localhost:5000/api/beans"
-            const response = await fetch (url, {
-                method:"POST"
+            const response = await fetch(url, {
+                method: "POST"
             });
-            const confirmation = await response.json();
-            orderNr = confirmation.orderNr;
-            console.log(orderNr);
+            const confirmationObject = await response.json();
+            setConfirmation(confirmationObject);
         }
-        
+
         getStatus();
     }, []);
 
 
     // ???    
-    return (        
+    return (
         <div className='status'>
-            <h2>Ordernummer #{orderNr}</h2>
+            <h2>Ordernummer #{confirmation.orderNr}</h2>
+            <h2>ETA #{confirmation.eta}</h2>
         </div>
     )
 }

@@ -1,8 +1,9 @@
 import '../App.css';
-import {addToCart} from '../actions/cartActions';
+import { addToCart } from '../actions/cartActions';
 import { useDispatch } from 'react-redux';
+import plusSign from '../assets/graphics/add.svg';
 
-function MenuItem({id, title, desc, price}) {
+function MenuItem({ id, title, desc, price }) {
     const dispatch = useDispatch();
 
     // Would be better to send whole object here
@@ -12,10 +13,12 @@ function MenuItem({id, title, desc, price}) {
 
     return (
         <div className='menu-item'>
-            <button onClick={() => addItemToCart(id)}>+</button>
+            <div className='menu-item-circle' onMouseDown={() => addItemToCart(id)}>
+                <img src={plusSign} alt='Plus sign to buy item.' id='plus-sign'></img>
+            </div>
             <h1 id="title">{title}</h1>
-            <h1 id="price">{price} kr</h1>
             <h2 id="desc">{desc}</h2>
+            <h1 id="price">{price} kr</h1>
         </div>
     )
 }

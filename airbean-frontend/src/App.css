@@ -1,38 +1,157 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.app {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+/* Landing Page */
+.landing {  
+  background-color: #38846d;
+  height: 667px;
+  width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+#intro-left {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+#intro-right {
+  grid-column-start: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+#airbean-logo {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-self: center;
+  margin-left: 60px;
+  margin-top: 7px;
+  
+}
+
+/* Menu Page */
+.menu {  
+  background-color: #F3E4E1;
+  height: 839;
+  width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 130px auto 130px;
+}
+.menu .view-cart {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.menu-items {
+  width: 100%;
+  margin-left: 4rem;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  background-color: blue;
+}
+
+#menu-top {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+}
+
+#menu-bottom {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+}
+
+/* Menu Item Component */
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.menu-item-circle {
+  height: 32px;
+  width: 32px;
+  background-color: #2F2926;
+  border-radius: 50%;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: flex;
+  justify-content: center;
+}
+.menu-item-circle #plus-sign {
+  height: 50%;
+  width: 50%;
+  margin-top: 25%;
+}
+.menu-item h1 {
+  font-size: 23px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.menu-item #title {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+.menu-item #price {
+  grid-column-start: 4;
+  text-align: right;
+}
+.menu-item #desc {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  font-size: 12px;
+}
+
+
+/* View Cart Component */
+.cart-component {
+  height: 65px;
+  width: 65px;
+}
+.circle-with-bag {
+  background-color: #2F2926;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  justify-content: center;
+}
+
+#bag-image {
+  margin-top: 18px;
+  margin-bottom: auto;
+  margin-left: 22px;
+  margin-right: auto;
+}
+
+.circle-counter {
+  background-color: #E5674E;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  bottom: 60px;
+  left: 50px;
 }

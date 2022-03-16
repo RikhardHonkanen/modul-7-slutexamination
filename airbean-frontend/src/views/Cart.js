@@ -2,18 +2,18 @@ import '../App.css';
 import ViewCart from '../components/ViewCart'
 import CartItem from '../components/CartItem'
 import { Link } from 'react-router-dom';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Cart() {
-    const menu = useSelector((state) => {return state.menuItems});
-    const currentCart = useSelector((state) => {return state.cartItems});
+    const menu = useSelector((state) => { return state.menuItems });
+    const currentCart = useSelector((state) => { return state.cartItems });
 
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
 
     // This function can probably be improved a lot
-    function findDiscounts() {        
+    function findDiscounts() {
         const coffeeIndex = menu.menu.findIndex(i => i.title === "Bryggkaffe");
         const coffeeId = menu.menu[coffeeIndex].id;
         const pastryIndex = menu.menu.findIndex(i => i.title === "Gustav Adolfsbakelse");
@@ -22,7 +22,7 @@ function Cart() {
         if (currentCart.includes(coffeeId) && currentCart.includes(pastryId)) {
             let coffeeAmount = 0;
             let pastryAmount = 0;
-                        
+
             function countCoffee(item) {
                 if (item === coffeeId) {
                     coffeeAmount += 1;
@@ -43,17 +43,17 @@ function Cart() {
                 discount = coffeeAmount * 49;
             }
 
-            return discount;            
-        }        
+            return discount;
+        }
     }
-    
+
     const uniqueCart = currentCart.filter(onlyUnique);
     let totalPrice = 0;
     let discount = 0;
 
     return (
         <div className='cart'>
-            <ViewCart />
+            <ViewCart className='view-cart' />
             {uniqueCart.map((cartItem) => {
                 const index = menu.menu.findIndex(i => i.id === cartItem);
                 let itemAmount = 0;
@@ -65,7 +65,7 @@ function Cart() {
                 currentCart.forEach(countItems);
                 totalPrice += itemAmount * menu.menu[index].price;
                 discount = findDiscounts();
-                
+
                 return (
                     <CartItem key={menu.menu[index].id}
                         id={menu.menu[index].id}

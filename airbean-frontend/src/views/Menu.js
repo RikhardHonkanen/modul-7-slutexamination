@@ -4,41 +4,49 @@ import MenuItem from '../components/MenuItem'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {initialize} from '../actions/cartActions';
-import {useSelector} from 'react-redux';
+import { initialize } from '../actions/cartActions';
+import { useSelector } from 'react-redux';
+import menuTop from '../assets/graphics/graphics-header.svg';
+import menuBottom from '../assets/graphics/graphics-footer.svg';
+
 
 function Menu() {
     useEffect(() => {
         getMenu();
     }, []);
 
-    const dispatch = useDispatch();    
+    const dispatch = useDispatch();
 
     async function getMenu() {
         let url = "http://localhost:5000/api/beans"
-        const response = await fetch (url, {
-            method:"GET"
+        const response = await fetch(url, {
+            method: "GET"
         });
         const apiMenu = await response.json();
         dispatch(initialize(apiMenu));
     }
 
-    const menu = useSelector((state) => {return state.menuItems});
+    const menu = useSelector((state) => { return state.menuItems });
     console.log(menu);
     return (
         <div className='menu'>
-            <ViewCart />
-            {menu.menu?.map((menuItem) => {
-                return (
-                    <MenuItem key={menuItem.id}
-                        id={menuItem.id}
-                        title={menuItem.title}
-                        desc={menuItem.desc}
-                        price={menuItem.price}
-                    />
-                )
-            })}
-            <Link to="/cart">To Cart</Link>
+            <img src={menuTop} alt='Top image' id='menu-top'></img>
+            <Link to="/cart" className='view-cart'>
+                <ViewCart />
+            </Link>
+            <div className='menu-items'>
+                {menu.menu?.map((menuItem) => {
+                    return (
+                        <MenuItem key={menuItem.id}
+                            id={menuItem.id}
+                            title={menuItem.title}
+                            desc={menuItem.desc}
+                            price={menuItem.price}
+                        />
+                    )
+                })}
+            </div>
+            <img src={menuBottom} alt='Bottom image' id='menu-bottom'></img>
         </div>
     )
 }
