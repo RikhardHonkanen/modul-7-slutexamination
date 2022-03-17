@@ -27,13 +27,17 @@ function Menu() {
     }
 
     const menu = useSelector((state) => { return state.menuItems });
-    console.log(menu);
+    // Cart should probably be a component instead
+    // of a route. Some type of animation when user
+    // clicks cart to fade background?
+
     return (
         <div className='menu'>
             <img src={menuTop} alt='Top image' id='menu-top'></img>
             <Link to="/cart" className='view-cart'>
                 <ViewCart />
             </Link>
+            <h1 className='menu-header'>Meny</h1>
             <div className='menu-items'>
                 {menu.menu?.map((menuItem) => {
                     return (

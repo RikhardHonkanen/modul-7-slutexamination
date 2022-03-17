@@ -16,7 +16,10 @@ function MenuItem({ id, title, desc, price }) {
             <div className='menu-item-circle' onMouseDown={() => addItemToCart(id)}>
                 <img src={plusSign} alt='Plus sign to buy item.' id='plus-sign'></img>
             </div>
-            <h1 id="title">{title}</h1>
+            <div className='title-and-dots'>
+                <h1 id="title">{title}</h1>
+                <div id="dots">&nbsp;</div>
+            </div>
             <h2 id="desc">{desc}</h2>
             <h1 id="price">{price} kr</h1>
         </div>

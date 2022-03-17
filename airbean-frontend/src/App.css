@@ -4,7 +4,7 @@
 }
 
 .app {
-  justify-content: center;
+  font-family: rufina;
 }
 
 /* Landing Page */
@@ -53,39 +53,48 @@
   margin-top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 130px auto 130px;
+  grid-template-rows: 130px auto auto 130px;
 }
 .menu .view-cart {
-  grid-column-start: 3;
+  grid-column-start: 2;
   grid-row-start: 1;
+  margin-left: 112px;
+  margin-top: 15px;
 }
-
-.menu-items {
-  width: 100%;
-  margin-left: 4rem;
+.menu-header {
+  font-weight: 700;
+  font-size: 35px;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 2;
-  background-color: blue;
+  justify-self: center;
+  padding-bottom: 35px;
 }
-
+.menu-items {
+  width: 375px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  /* background-color: blue; */
+}
 #menu-top {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
 }
-
 #menu-bottom {
   grid-column-start: 1;
   grid-column-end: 3;
-  grid-row-start: 3;
+  grid-row-start: 4;
+  margin-top: 60px;
 }
 
 /* Menu Item Component */
 .menu-item {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto auto;
   grid-template-rows: 1fr 1fr;
+  margin-top: 5px;
 }
 .menu-item-circle {
   height: 32px;
@@ -95,6 +104,7 @@
   grid-column-start: 1;
   grid-row-start: 1;
   grid-row-end: 2;
+  margin-left: 20px;
   display: flex;
   justify-content: center;
 }
@@ -104,13 +114,27 @@
   margin-top: 25%;
 }
 .menu-item h1 {
-  font-size: 23px;
+  font-size: 20px;
   grid-column-start: 2;
   grid-column-end: 3;
 }
-.menu-item #title {
+.title-and-dots {
+  grid-row-start: 1;
   grid-column-start: 2;
   grid-column-end: 3;
+  display: flex;
+  flex-direction: row;
+
+}
+.menu-item #title {
+  width: auto; 
+}
+.title-and-dots #dots {
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+  margin-bottom: 6%;
+  min-width: 10px;
+  width: auto;
+  /* background-color: #38846d; */
 }
 .menu-item #price {
   grid-column-start: 4;
@@ -121,8 +145,8 @@
   grid-column-start: 2;
   grid-column-end: 3;
   font-size: 12px;
+  font-weight: 100;
 }
-
 
 /* View Cart Component */
 .cart-component {
@@ -153,5 +177,5 @@
   text-align: center;
   position: relative;
   bottom: 60px;
-  left: 50px;
+  left: 40px;
 }
