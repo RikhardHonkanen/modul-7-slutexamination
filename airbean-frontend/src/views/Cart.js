@@ -45,6 +45,7 @@ function Cart() {
 
             return discount;
         }
+        return discount;
     }
 
     const uniqueCart = currentCart.filter(onlyUnique);
@@ -76,6 +77,8 @@ function Cart() {
                 )
             })}
             <h1>Total {totalPrice - discount} kr</h1>
+            {/* Conditional rendering here would be better */}
+            <p>Including {discount} kr discount</p>
             <Link to="/status">Take my money!</Link>
         </div>
     )
